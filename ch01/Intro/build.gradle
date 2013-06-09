@@ -2,7 +2,7 @@ apply plugin:'groovy'
 apply plugin:'eclipse'
 
 repositories {
-    mavenCentral()
+    mavenRepo urls:["http://repo1.maven.org/maven2/"]
 }
 
 task wrapper(type:Wrapper) {

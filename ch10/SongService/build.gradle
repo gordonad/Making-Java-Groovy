@@ -5,7 +5,7 @@ apply plugin:'eclipse'
 apply plugin:'eclipse-wtp'
 
 repositories {
-    mavenCentral()
+    mavenRepo urls:["http://repo1.maven.org/maven2/"]
 }
 
 sourceSets {
