@@ -2,26 +2,24 @@ apply plugin:'groovy'
 apply plugin:'eclipse'
 
 repositories {
-    mavenRepo urls:["http://repo1.maven.org/maven2/"]
+	maven { url "http://repo1.maven.org/maven2/" }
 }
 
 sourceSets {
-    main {
-        java { srcDirs = [] }
-        groovy { srcDir 'src' }
-    }
-    test {
-        java { srcDirs = [] }
-        groovy { srcDir 'test' }
-        resources { srcDir 'resources' }
-    }
+	main {
+		java { srcDirs = []}
+		groovy { srcDir 'src' }
+	}
+	test {
+		java { srcDirs = []}
+		groovy { srcDir 'test' }
+		resources { srcDir 'resources' }
+	}
 }
 
-task wrapper(type:Wrapper) {
-    gradleVersion = '1.6'
-}
+task wrapper(type:Wrapper) { gradleVersion = '1.6' }
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.1.4"
-    testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
+	compile "org.codehaus.groovy:groovy-all:2.1.4"
+	testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
 }

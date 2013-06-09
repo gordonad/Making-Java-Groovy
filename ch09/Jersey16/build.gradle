@@ -3,26 +3,24 @@ apply plugin:'eclipse'
 apply plugin:'idea'
 
 repositories {
-    mavenRepo urls:["http://repo1.maven.org/maven2/"]
+	maven { url "http://repo1.maven.org/maven2/" }
 }
 
-task wrapper(type:Wrapper) {
-    gradleVersion = '1.2'
-}
+task wrapper(type:Wrapper) { gradleVersion = '1.6' }
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:2.1.4'
-    compile 'asm:asm:3.3.1'
-    compile 'com.sun.jersey:jersey-core:1.17.1'
-    compile 'com.sun.jersey:jersey-server:1.17.1'
-    compile 'com.sun.jersey:jersey-client:1.17.1'
-    compile 'com.sun.jersey:jersey-grizzly2:1.17.1'
-    compile 'com.sun.jersey:jersey-servlet:1.17.1'
-    compile 'javax.servlet:javax.servlet-api:3.0.1'
-    compile 'javax.ws.rs:jsr311-api:1.1.1'
-	
-    testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
-    testCompile 'com.sun.jersey.jersey-test-framework:jersey-test-framework-core:1.17.1'
-    testCompile 'com.sun.jersey.jersey-test-framework:jersey-test-framework-grizzly2:1.17.1'	
-    testCompile 'org.glassfish.grizzly:grizzly-http-servlet:2.3.3'
+	groovy 'org.codehaus.groovy:groovy-all:2.1.4'
+	compile 'asm:asm:3.3.1'
+	compile 'com.sun.jersey:jersey-core:1.17.1'
+	compile 'com.sun.jersey:jersey-server:1.17.1'
+	compile 'com.sun.jersey:jersey-client:1.17.1'
+	compile 'com.sun.jersey:jersey-grizzly2:1.17.1'
+	compile 'com.sun.jersey:jersey-servlet:1.17.1'
+	compile 'javax.servlet:javax.servlet-api:3.0.1'
+	compile 'javax.ws.rs:jsr311-api:1.1.1'
+
+	testCompile 'org.spockframework:spock-core:0.7-groovy-2.0'
+	testCompile 'com.sun.jersey.jersey-test-framework:jersey-test-framework-core:1.17.1'
+	testCompile 'com.sun.jersey.jersey-test-framework:jersey-test-framework-grizzly2:1.17.1'
+	testCompile 'org.glassfish.grizzly:grizzly-http-servlet:2.3.3'
 }

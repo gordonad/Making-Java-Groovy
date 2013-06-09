@@ -3,7 +3,6 @@ apply plugin:'eclipse'
 apply plugin:'idea'
 
 repositories {
-    mavenRepo urls:["http://repo1.maven.org/maven2/"]
     maven { url "http://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "http://maven.restlet.org" }
 }
@@ -13,7 +12,7 @@ task wrapper(type:Wrapper) {
 }
 
 dependencies {
-    groovy 'org.codehaus.groovy:groovy-all:2.1.4'
+    compile 'org.codehaus.groovy:groovy-all:2.1.4'
     compile 'org.restlet.jse:org.restlet:2.1.2'
     compile 'org.restlet.jse:org.restlet.ext.simple:2.1.2'
 

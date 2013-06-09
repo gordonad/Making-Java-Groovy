@@ -4,13 +4,9 @@ apply plugin:'jetty'
 apply plugin:'eclipse'
 apply plugin:'eclipse-wtp'
 
-repositories {
-    mavenRepo urls:["http://repo1.maven.org/maven2/"]
-}
+repositories { maven { url "http://repo1.maven.org/maven2/" } }
 
-sourceSets {
-    integrationTest
-}
+sourceSets { integrationTest }
 
 httpPort = 8163
 stopPort = 9451
@@ -19,30 +15,27 @@ stopKey = 'foo'
 [jettyRun, jettyRunWar]*.daemon = true
 
 task intTest(type: Test, dependsOn: jettyRun) {
-    testClassesDir = sourceSets.integrationTest.output.classesDir
-    classpath = sourceSets.integrationTest.runtimeClasspath
-    jettyStop.execute()
+	testClassesDir = sourceSets.integrationTest.output.classesDir
+	classpath = sourceSets.integrationTest.runtimeClasspath
+	jettyStop.execute()
 }
 
 check.dependsOn intTest
 
-task wrapper(type:Wrapper) {
-    gradleVersion = '1.6'
-}
+task wrapper(type:Wrapper) { gradleVersion = '1.6' }
 
 def springVersion = '3.2.3.RELEASE'
 
 dependencies {
-    compile "org.codehaus.groovy:groovy-all:2.1.4"
-    providedCompile 'javax.servlet:servlet-api:2.5'
-    providedCompile 'javax.servlet.jsp:jsp-api:2.2'
-    
-    testCompile "junit:junit:4.11"
-    testCompile "org.springframework:spring-core:$springVersion"
-    testCompile "org.springframework:spring-test:$springVersion"
-    testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
-    
-    integrationTestCompile configurations.testCompile
-    integrationTestRuntime configurations.testRuntime
-    
+	compile "org.codehaus.groovy:groovy-all:2.1.4"
+	providedCompile 'javax.servlet:servlet-api:2.5'
+	providedCompile 'javax.servlet.jsp:jsp-api:2.2'
+
+	testCompile "junit:junit:4.11"
+	testCompile "org.springframework:spring-core:$springVersion"
+	testCompile "org.springframework:spring-test:$springVersion"
+	testCompile 'org.codehaus.groovy.modules.http-builder:http-builder:0.6'
+
+	integrationTestCompile configurations.testCompile
+	integrationTestRuntime configurations.testRuntime
 }

@@ -1,54 +1,47 @@
 apply plugin:'groovy'
 apply plugin:'eclipse'
 
-repositories {
-    mavenRepo urls:["http://repo1.maven.org/maven2/"]
-    mavenRepo urls:["http://repo1.maven.org/maven2/", "http://download.java.net/maven/2"]
-}
+repositories { maven { url "http://repo1.maven.org/maven2/" } }
 
-configurations {
-    jaxws
-}
+configurations { jaxws }
 
 sourceSets {
-    main {
-        java { srcDirs = [] }
-        groovy { srcDir 'src' }
-    }
-    test {
-        java { srcDirs = [] }
-        groovy { srcDir 'test' }
-        resources { srcDir 'resources' }
-    }
+	main {
+		java { srcDirs = []}
+		groovy { srcDir 'src' }
+	}
+	test {
+		java { srcDirs = []}
+		groovy { srcDir 'test' }
+		resources { srcDir 'resources' }
+	}
 }
 
 task wsimport(dependsOn: processResources)  {
-    doLast{
-        sourceSets.main.classesDir.mkdirs()
-        ant {
-            taskdef(name:'wsimport',
-                classname:'com.sun.tools.ws.ant.WsImport',
-                classpath:configurations.jaxws.asPath)
-            wsimport(keep:true,
-                destdir: sourceSets.main.classesDir,
-                sourcedestdir:'src',
-            wsdl:'http://localhost:1234/calc?wsdl')
-        }
-    }
+	doLast{
+		sourceSets.main.classesDir.mkdirs()
+		ant {
+			taskdef(name:'wsimport',
+			classname:'com.sun.tools.ws.ant.WsImport',
+			classpath:configurations.jaxws.asPath)
+			wsimport(keep:true,
+			destdir: sourceSets.main.classesDir,
+			sourcedestdir:'src',
+			wsdl:'http://localhost:1234/calc?wsdl')
+		}
+	}
 }
 wsimport.onlyIf { !(new File('src/mjg/calc/service')).exists() }
 compileJava.dependsOn(wsimport)
 
-task wrapper(type:Wrapper) {
-    gradleVersion = '1.6'
-}
+task wrapper(type:Wrapper) { gradleVersion = '1.6' }
 
 def groovyVersion = '2.1.4'
 def spockVersion = '0.7-groovy-2.0'
 
 dependencies {
-    groovy "org.codehaus.groovy:groovy-all:$groovyVersion"
-    jaxws 'com.sun.xml.ws:jaxws-tools:2.2.7'
+	compile "org.codehaus.groovy:groovy-all:$groovyVersion"
+	jaxws 'com.sun.xml.ws:jaxws-tools:2.2.7'
 
-    testCompile "org.spockframework:spock-core:$spockVersion"
+	testCompile "org.spockframework:spock-core:$spockVersion"
 }
