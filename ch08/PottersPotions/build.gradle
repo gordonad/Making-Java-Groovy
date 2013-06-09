@@ -44,15 +44,15 @@ wsgen.onlyIf { !(new File('src/mjg/pp/service/jaxws')).exists() }
 classes.dependsOn wsgen
 
 task wrapper(type:Wrapper) {
-    gradleVersion = '1.0'
+    gradleVersion = '1.6'
 }
 
-def groovyVersion = '2.0.0'
-def spockVersion = '0.7-groovy-2.0-SNAPSHOT'
+def groovyVersion = '2.1.4'
+def spockVersion = '0.7-groovy-2.0'
 
 dependencies {
     groovy "org.codehaus.groovy:groovy-all:$groovyVersion"
-    jaxws 'com.sun.xml.ws:jaxws-tools:2.1.4'
+    jaxws 'com.sun.xml.ws:jaxws-tools:2.2.7'
 
     testCompile "org.spockframework:spock-core:$spockVersion"
 }

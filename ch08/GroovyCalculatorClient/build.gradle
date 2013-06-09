@@ -40,12 +40,12 @@ task wsimport(dependsOn: processResources)  {
 wsimport.onlyIf { !(new File('src/mjg/calc/service')).exists() }
 compileJava.dependsOn(wsimport)
 
-def groovyVersion = '1.8.4'
-def spockVersion = '0.5-groovy-1.8'
+def groovyVersion = '2.1.4'
+def spockVersion = '0.7-groovy-2.0'
 
 dependencies {
     groovy "org.codehaus.groovy:groovy-all:$groovyVersion"
-    jaxws 'com.sun.xml.ws:jaxws-tools:2.1.4'
+    jaxws 'com.sun.xml.ws:jaxws-tools:2.2.7'
 
     testCompile "org.spockframework:spock-core:$spockVersion"
 }
